@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>피자 상세보기</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<div id="container" class="container">
+    <!-- 상세정보 / 수정 / 삭제 버튼 추가 -->
+    <h1>피자 상세정보</h1>
+    <div id="pizza-detail">
+        <img class="pizza-img" src="/images/default-pizza.png" id="pizza-img">
+        <p><strong>이름 : </strong><span id="pizza-name"></span> </p>
+        <p><strong>가격 : </strong><span id="pizza-price"></span> </p>
+        <p><strong>설명 : </strong><span id="pizza-description"></span> </p>
+    </div>
+</div>
+<div class="buttons">
+    <a id="edit-button" class="btn" href="#">수정</a>
+    <a id="delete-button" class="btn" >삭제</a>
+    <a class="btn" href="/pizzas">목록으로 이동하기</a>
+</div>
+<script>
+const params = new URLSearchParams(window.location.search);
+const pizza = params.get("id"); //id 키를 이용해서 값을 가져오기
+
+$.ajax({
+    url: `/api/pizzas/${id}`,
+    method: "GET",
+    success: function (data){
+        $("#pizza-name").text(data.name);
+        $("#pizza-price").text(data.price);
+        $("#pizza-description").text(data.description);
+    },
+    error: function (){
+        alert("피자 정보를 가져올 수 없습니다.");
+        //405 클라이언트가 서버에 허용되지 않는 메서드
+        //피자 목록으로 돌려보내기
+        window.location.href= "/pizzas";
+    }
+})
+</script>
+</body>
+</html>
