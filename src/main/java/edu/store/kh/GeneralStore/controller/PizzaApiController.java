@@ -6,8 +6,14 @@ import edu.store.kh.GeneralStore.service.PizzaService;
 import edu.store.kh.GeneralStore.service.PizzaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 
 @RequestMapping("/api")
@@ -33,14 +39,16 @@ public class PizzaApiController {
     }
 
     @PutMapping("pizzas/{id}")
-    public void updatePizza(@PathVariable int id, @RequestBody Pizza pizza) {
-        pizzaService.updatePizza(pizza);
+    public void updatePizza(@PathVariable int id,
+                            @RequestPart("name") String name,
+                            @RequestPart("price") int price,
+                            @RequestPart("description") String description,
+                            @RequestPart(value = "imagePath", required = false) MultipartFile image) {
+
     }
 
     @DeleteMapping("/pizzas/{id}")
     public void deletePizza(@PathVariable int id) {
         pizzaService.deletePizza(id);
     }
-
-
 }

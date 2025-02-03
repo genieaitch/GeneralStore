@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>피자 상세보기</title>
     <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/pizza-style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
@@ -24,6 +25,7 @@
     <a class="btn" href="/pizzas">목록으로 이동하기</a>
 </div>
 <script>
+    // 상세보기
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id"); //id 키를 이용해서 값을 가져오기
 
@@ -46,6 +48,7 @@
         }
     })
 
+    //삭제 url 설정
     $("#delete-button").click(function () {
         if (confirm("정말 삭제하시겠습니까?")) {
             $.ajax({
@@ -61,6 +64,8 @@
             })
         }
     });
+
+    //수정하는 html 이동하는 url 설정
 
 </script>
 </body>

@@ -6,63 +6,105 @@
     <title>피자 수정하기</title>
     <link rel="icon" href="/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/css/pizza-style.css">
 </head>
 <body>
-<h1>피자 수정하기</h1>
-<div class="pizzaEdit">
-    <form>
-        <label for="pizzaName">피자 이름 : </label>
-        <input type="text" id="pizzaName">
+<div class="container">
+    <h1>피자 수정하기</h1>
+    <!-- 이미지 미리보기 -->
+    <div class="image-preview">
+        <img id="pizza-img" src="/images/default-pizza.png">
+        <label for="pizza-image">이미지 변경하기</label>
+        <input type="file" id="pizza-image" accept="image/*"> <!-- accept="image/*" 이미지 파일 이외에는 선택 불가 -->
+    </div>
 
-        <label for="pizzaPrice">피자 가격 : </label>
-        <input type="text" id="pizzaPrice">
+    <label for="pizza-name">메뉴 이름 : </label>
+    <input type="text" id="pizza-name" name="name" required>
 
-        <label for="pizzaDescription">피자 설명 : </label>
-        <input type="text" id="pizzaDescription">
-    </form>
-    <button type="button" id="editBtn">수정하기</button>
+    <label for="pizza-price">메뉴 가격 : </label>
+    <input type="text" id="pizza-price" name="price" required>
+
+    <label for="pizza-description">메뉴 설명 : </label>
+    <input type="text" id="pizza-description" name="description" required>
+
+    <div class="button">
+        <button type="button" class="btn" id="editBtn">수정완료</button>
+        <a href="/pizzas" class="btn">목록으로 돌아가기</a>
+        <a id="editCancel" class="btn">수정 취소하기</a>
+    </div>
 </div>
 <script>
-    // 값 불러오기
+    // 1. id 값 가져오기
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
 
+    // 2. 상세보기에 작성한 api 를 이용해서 input 태그 내 데이터 가져오기
     $.ajax({
         url: `/api/pizzas/${id}`,
         method: "GET",
         success:
-        function (data){
-            if (data){
-                $("#pizzaName").val(data.name);
-                $("#pizzaPrice").val(data.price);
-                $("#pizzaDescription").val(data.description);
-            }
-        },
-        error: function (){
-            $("#pizzaEdit").html("<p>백엔드 api 에서 데이터를 가져오는데 문제가 발생하였습니다.</p>");
+            function (data) {
+                // text → value로 변경해서 input, textarea 태그 내에 DB에서 가져온 데이터로 기본값 작성하기
+                $("#pizza-name").val(data.name);
+                $("#pizza-price").val(data.price);
+                $("#pizza-description").val(data.description);
+
+                // 만약에 db에 기존 이미지가 존재한다면 default-pizza.png → db에 저장된 명칭 이미지로 변경
+                if (data.image){
+                    $("#pizza-image").attr("src", data.imagePath);
+                }
+            },
+        error: function () {
+            $("#container").html("<p>백엔드 api 에서 데이터를 가져오는데 문제가 발생하였습니다.</p>");
         }
     })
 
-    // 수정
-    $("#editBtn").click(function (event){
-        event.preventDefault();
+    // 3. 수정하기 버튼을 눌렀을 때 데이터를 수정하는 버튼 설정
+    $("#editBtn").click(function () {
+        const name = $("#pizza-name").val();
+        const price = $("#pizza-price").val();
+        const description = $("#pizza-description").val()
+        const imagePath = $("#pizza-image")[0].files[0]; //이미지와 같은 파일 배열 형태 맨 앞에 만들어진 이미지 선택해서 가져오기
+
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("price", price);
+        formData.append("description", description);
+        formData.append("imagePath", imagePath);
+
         $.ajax({
             url: `/api/pizzas/${id}`,
-            method: "put",
-            contentType: "application/json",
-            data: JSON.stringify({
-                name: $("#pizzaName").val(),
-                price: $("#pizzaPrice").val(),
-                description: $("#pizzaDescription").val()
-            }),
-            success: function (){
+            method: "POST",
+            processData: false, //formData로 데이터를 알아서 설정한 다음 controller에 보낼 것이기 때문에 processData / contentType false 처리
+            contentType: false,
+            data: formData,
+            success: function () {
                 alert("피자 정보 수정하였습니다.");
-                window.location.href = `/pizzas/ditail?id=${id}`
+                window.location.href = `/pizzas/detail?id=${id}` // 상세보기로 이동
             },
-            error: function (){
+            error: function () {
                 alert("정보를 수정할 수 없습니다. 다시 시도해 주세요.");
             }
         })
+    })
+
+    // 4. 이전으로 돌아가기 버튼 설정
+    $("#editCancel").click(function () {
+        if (confirm("수정을 취소하시겠습니까? 변경사항이 저장되지 않습니다.")) {
+            window.location.href = `/pizzas/detail?id=${id}` // 상세보기로 이동
+        }
+    })
+
+    // 5. 이미지 미리보기 설정
+    $("#pizza-image").change(function (event){
+        const file = event.target.files[0]; // 변화 = 이벤트가 발생한 타겟 = 목표의 데이터를 가져오기
+        if (file){
+            const reader = new FileReader(); //만약에 이벤트 감지되고, 감지된 데이터를 가져올 수 있을 때만 읽기모드 설정
+            reader.onload = function (e){
+                $("#pizza-img").attr("src", e.target.result); //pizza-img src=경로 에 이벤트가 발생한 파일의 결과(=주소)를 넣어줌
+            };
+            reder.readAsDataURL(file); //URL 주소 데이터 읽어서 볼 수 있도록 설정
+        }
     })
 </script>
 </body>

@@ -3,11 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>피자 추가하기</title>
     <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/pizza-style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
+<div class="container">
+    <h1>피자 추가하기</h1>
+    <!-- 이미지 미리보기 -->
+    <div class="image-preview">
+        <img id="pizza-img">
+        <label for="pizza-image">이미지 추가하기</label>
+        <input type="file" id="pizza-image" accept="image/*"> <!-- accept="image/*" 이미지 파일 이외에는 선택 불가 -->
+    </div>
+
+    <label for="pizza-name">메뉴 이름 : </label>
+    <input type="text" id="pizza-name" name="name" required>
+
+    <label for="pizza-price">메뉴 가격 : </label>
+    <input type="text" id="pizza-price" name="price" required>
+
+    <label for="pizza-description">메뉴 설명 : </label>
+    <input type="text" id="pizza-description" name="description" required>
+
+    <div class="button">
+        <button type="button" class="btn" id="editBtn">메뉴 추가</button>
+        <a href="/pizzas" class="btn">목록으로 돌아가기</a>
+    </div>
+</div>
 
 </body>
 </html>

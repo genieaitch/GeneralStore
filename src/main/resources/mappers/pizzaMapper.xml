@@ -18,4 +18,19 @@
         FROM PizzaMenu
         WHERE id = #{id}
     </select>
+
+    <insert id="insertPizza">
+        INSERT INTO PizzaMenu (name, price, description, imagePath)
+        VALUES (#{name}, #{price}, #{description}, #{imagePath})
+    </insert>
+
+    <update id="updatePizza">
+        UPDATE PizzaMenu
+        SET
+            name = #{name},
+            price = #{price},
+            description = #{description},
+            imagePath = #{imagePath}
+        WHERE id = #{id}
+    </update>
 </mapper>
