@@ -19,7 +19,7 @@
     </div>
 </div>
 <div class="buttons">
-    <a id="edit-button" class="btn" href="#">수정</a>
+    <a id="edit-button" class="btn">수정</a>
     <a id="delete-button" class="btn">삭제</a>
     <a class="btn" href="/pizzas">목록으로 이동하기</a>
 </div>
@@ -35,6 +35,8 @@
             $("#pizza-name").text(data.name);
             $("#pizza-description").text(data.description);
             $("#pizza-price").text(data.price);
+
+            $("#edit-button").attr("href", `/pizzas/edit?id=${id}`);
         },
         error: function () {
             alert("피자 정보를 가져올 수 없습니다.");

@@ -3,11 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>피자 수정하기</title>
     <link rel="icon" href="/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
+<h1>피자 수정하기</h1>
+<div class="pizzaEdit">
+    <form>
+        <label for="pizzaName">피자 이름 : </label>
+        <input type="text" id="pizzaName">
 
+        <label for="pizzaPrice">피자 가격 : </label>
+        <input type="text" id="pizzaPrice">
+
+        <label for="pizzaDescription">피자 설명 : </label>
+        <input type="text" id="pizzaDescription">
+    </form>
+    <button type="button" id="editBtn">수정하기</button>
+</div>
+<script>
+    // 값 불러오기
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    $.ajax({
+        url: `/api/pizzas/${id}`,
+        method: "GET",
+        success:
+        function (data){
+            if (data){
+                $("#pizzaName").val(data.name);
+                $("#pizzaPrice").val(data.price);
+                $("#pizzaDescription").val(data.description);
+            }
+        },
+        error: function (){
+            $("#pizzaEdit").html("<p>백엔드 api 에서 데이터를 가져오는데 문제가 발생하였습니다.</p>");
+        }
+    })
+
+    // 수정
+    $("#editBtn").click(function (event){
+        event.preventDefault();
+        $.ajax({
+            url: `/api/pizzas/${id}`,
+            method: "put",
+            contentType: "application/json",
+            data: JSON.stringify({
+                name: $("#pizzaName").val(),
+                price: $("#pizzaPrice").val(),
+                description: $("#pizzaDescription").val()
+            }),
+            success: function (){
+                alert("피자 정보 수정하였습니다.");
+                window.location.href = `/pizzas/ditail?id=${id}`
+            },
+            error: function (){
+                alert("정보를 수정할 수 없습니다. 다시 시도해 주세요.");
+            }
+        })
+    })
+</script>
 </body>
 </html>
