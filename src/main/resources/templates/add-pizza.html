@@ -2,61 +2,69 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>피자 추가하기</title>
-    <link rel="icon" href="/favicon.ico">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Title</title>
+    <link href="/favicon.ico" rel="icon">
     <link rel="stylesheet" href="/css/pizza-style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 <div class="container" id="container">
     <form id="editPizzaForm">
-        <label for="pizza-name">이름 : </label>
-        <input type="text" id="pizza-name" name="name">
+        <label for="name">이름:</label>
+        <input id="name" name="name" required type="text">
 
-        <label for="pizza-price">가격 : </label>
-        <input type="text" id="pizza-price" name="price">
+        <label for="price">가격:</label>
+        <input id="price" name="price" required type="number">
 
-        <label for="pizza-description">설명 : </label>
-        <input type="text" id="pizza-description" name="description">
+        <label for="description">설명:</label>
+        <textarea id="description" name="description"></textarea>
 
-        <label for="pizza-image">이미지 업로드</label>
+        <label for="pizza-image">이미지 업로드:</label>
         <input accept="image/*" id="pizza-image" name="image" type="file">
 
         <div class="image-preview">
             <img alt="이미지 미리보기" id="pizza-img" src="">
         </div>
 
-        <button class="btn" type="submit">추가 완료</button>
+        <button class="btn" type="submit">추가</button>
+        <a class="btn" href="/pizzas">목록으로 이동하기</a>
     </form>
 </div>
+
 <script>
+
     $("#editPizzaForm").submit(function (event) {
         event.preventDefault();
-        const name = $("name").val();
-        const price = $("price").val();
-        const description = $("description").val();
+        const name = $("#name").val();
+        const price = $("#price").val();
+        const description = $("#description").val();
         const imagePath = $("#pizza-image")[0].files[0];
-    })
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("price", price);
-    formData.append("description", description);
-    formData.append("imagePath", imagePath);
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("price", price);
+        formData.append("description", description);
+        formData.append("imagePath", imagePath);
 
-    $.ajax({
-        url: "/api/pizzas",
-        method: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (data) {
-            alert("피자 메뉴를 성공적으로 추가했습니다.")
-        },
-        error: function (e) {
-            alert("현재 데이터를 추가할 수 없습니다.")
-        }
+        $.ajax({
+            url: "/api/pizzas",
+            method: "POST", //type oldVersion
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                alert("피자 메뉴를 성공적으로 추가했습니다.");
+                // 메뉴 추가됐을 때 이동할 경로 설정
+                // 1. 피자목록  2. 피자 상세보기
+                window.location.href = `/pizzas/detail?id=${id}`;
+            },
+            error: function (e) {
+                alert("현재 데이터를 추가할 수 없습니다.");
+            }
+
+
+        })
     })
 </script>
 </body>

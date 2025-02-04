@@ -2,11 +2,12 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>피자 수정하기</title>
-    <link rel="icon" href="/favicon.ico">
+    <link href="/favicon.ico" rel="icon">
+    <link href="/css/pizza-style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="/css/pizza-style.css">
+
 </head>
 <body>
 <div class="container">
@@ -15,26 +16,27 @@
     <div class="image-preview">
         <img id="pizza-img" src="/images/default-pizza.png">
         <label for="pizza-image">이미지 변경하기</label>
-        <input type="file" id="pizza-image" accept="image/*"> <!-- accept="image/*" 이미지 파일 이외에는 선택 불가 -->
+        <input type="file" id="pizza-image" accept="image/*"> <!--accept="image/*" 이미지 파일 이외에는 선택 불가 -->
     </div>
-
     <label for="pizza-name">메뉴 이름 : </label>
-    <input type="text" id="pizza-name" name="name" required>
+    <input id="pizza-name" name="name" required type="text">
 
     <label for="pizza-price">메뉴 가격 : </label>
-    <input type="text" id="pizza-price" name="price" required>
+    <input id="pizza-price" name="price" required type="number">
 
     <label for="pizza-description">메뉴 설명 : </label>
-    <input type="text" id="pizza-description" name="description" required>
+    <textarea id="pizza-description" name="description" required></textarea>
 
     <div class="button">
-        <button type="button" class="btn" id="editBtn">수정완료</button>
-        <a href="/pizzas" class="btn">목록으로 돌아가기</a>
-        <a id="editCancel" class="btn">수정 취소하기</a>
+        <button class="btn" id="editForm" type="button">수정완료</button>
+        <a class="btn" href="/pizzas">목록으로 돌아가기</a>
+        <a class="btn" id="editCancel">수정 취소하기</a>
     </div>
 </div>
+</body>
+
 <script>
-    // 1. id 값 가져오기
+    // 1. id값 가져오기
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
 
@@ -42,70 +44,69 @@
     $.ajax({
         url: `/api/pizzas/${id}`,
         method: "GET",
-        success:
-            function (data) {
-                // text → value로 변경해서 input, textarea 태그 내에 DB에서 가져온 데이터로 기본값 작성하기
-                $("#pizza-name").val(data.name);
-                $("#pizza-price").val(data.price);
-                $("#pizza-description").val(data.description);
+        success: function (data) {
+            // text -> value 로 변경해서  input, textarea 태그 내에 DB에서 가져온 데이터로 기본값 작성하기
+            $("#pizza-name").val(data.name);
+            $("#pizza-description").val(data.description);
+            $("#pizza-price").val(data.price);
 
-                // 만약에 db에 기존 이미지가 존재한다면 default-pizza.png → db에 저장된 명칭 이미지로 변경
-                if (data.image){
-                    $("#pizza-image").attr("src", data.imagePath);
-                }
-            },
+            // 만약에 db에 기존 이미지가 존재한다면 default-pizza.png -> DB에 저장된 명칭 이미지로 변경
+            if (data.imagePath) {
+                $("#pizza-image").attr("src", data.imagePath);
+            }
+        },
         error: function () {
-            $("#container").html("<p>백엔드 api 에서 데이터를 가져오는데 문제가 발생하였습니다.</p>");
+            alert("피자 정보를 가져올 수 없습니다.");
+            window.location.href = "/pizzas";
         }
     })
 
-    // 3. 수정하기 버튼을 눌렀을 때 데이터를 수정하는 버튼 설정
-    $("#editBtn").click(function () {
+    //3. 추가적으로 수정하기 버튼을 눌렀을 때 데이터를 수정하는 버튼 설정
+    $("#editForm").click(function () {
         const name = $("#pizza-name").val();
         const price = $("#pizza-price").val();
-        const description = $("#pizza-description").val()
-        const imagePath = $("#pizza-image")[0].files[0]; //이미지와 같은 파일 배열 형태 맨 앞에 만들어진 이미지 선택해서 가져오기
+        const description = $("#pizza-description").val();
+        const imagePath = $("#pizza-image")[0].files[0]; // 이미지와 같은 파일 배열 형태 맨 앞에 만들어진 이미지 선택해서 가져오기 설정
 
         const formData = new FormData();
         formData.append("name", name);
         formData.append("price", price);
         formData.append("description", description);
         formData.append("imagePath", imagePath);
-
         $.ajax({
             url: `/api/pizzas/${id}`,
-            method: "POST",
-            processData: false, //formData로 데이터를 알아서 설정한 다음 controller에 보낼 것이기 때문에 processData / contentType false 처리
-            contentType: false,
+            method: "PUT",
             data: formData,
-            success: function () {
-                alert("피자 정보 수정하였습니다.");
-                window.location.href = `/pizzas/detail?id=${id}` // 상세보기로 이동
+            //data: JSON.stringify({"name": name, "price": price, "description": description}),
+            processData: false, // formData로 데이터를 알아서 설정한다음 controller에 보낼 것이기 때문에 processData / contentType false 처리
+            contentType: false, // 글자형식 전달 "application/json" -> 이미지 형식 포함해서 전달
+            success: function (data) {
+                alert("피자 정보가 성공적으로 수정되었습니다.");
+                window.location.href = `/pizzas/detail?id=${id}`; //상세보기 이동
             },
             error: function () {
-                alert("정보를 수정할 수 없습니다. 다시 시도해 주세요.");
+                alert("피자 수정에 실패했습니다.");
             }
         })
     })
 
-    // 4. 이전으로 돌아가기 버튼 설정
+    //4. 이전으로 돌아가기 버튼 설정
     $("#editCancel").click(function () {
-        if (confirm("수정을 취소하시겠습니까? 변경사항이 저장되지 않습니다.")) {
-            window.location.href = `/pizzas/detail?id=${id}` // 상세보기로 이동
+        if (confirm("수정을 취소하시겠습니까? 변경사항이 저장되지 않습니다.")){
+            window.location.href = `/pizzas/detail?id=${id}`; //상세보기 이동
         }
     })
 
     // 5. 이미지 미리보기 설정
-    $("#pizza-image").change(function (event){
-        const file = event.target.files[0]; // 변화 = 이벤트가 발생한 타겟 = 목표의 데이터를 가져오기
-        if (file){
+    $("#pizza-image").change(function (event) {
+        const file = event.target.files[0]; // 변화 = 이벤트 가 발생한 타겟 = 목표의 데이터를 가져오기
+        if (file) {
             const reader = new FileReader(); //만약에 이벤트 감지되고, 감지된 데이터를 가져올 수 있을 때만 읽기모드 설정
-            reader.onload = function (e){
-                $("#pizza-img").attr("src", e.target.result); //pizza-img src=경로 에 이벤트가 발생한 파일의 결과(=주소)를 넣어줌
+            reader.onload = function (e) {
+                $("#pizza-img").attr("src", e.target.result); // pizza-img src=경로 에 이벤트가 발생한 파일의 결과(=주소)를 넣어줌
             };
-            reder.readAsDataURL(file); //URL 주소 데이터 읽어서 볼 수 있도록 설정
+            reader.readAsDataURL(file); //URL 주소 데이터 읽어서 볼 수 있도록 설정
         }
     })
 </script>
-</body>
 </html>

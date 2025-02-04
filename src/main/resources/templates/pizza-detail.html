@@ -38,7 +38,11 @@
             $("#pizza-description").text(data.description);
             $("#pizza-price").text(data.price);
 
-            //피자 이미지가 DB에 존재할 경우 img src 변경
+            // 이미지가 존재할 경우 src 변경
+            if (data.imagePath && data.imagePath.trim() !== "") {
+                $("#pizza-img").attr("src", data.imagePath);
+            }
+
             $("#edit-button").attr("href", `/pizzas/edit?id=${id}`);
         },
         error: function () {
@@ -59,7 +63,7 @@
                     alert("메뉴가 삭제되었습니다.");
                     window.location.href = "/pizzas";
                 },
-                error: function (){
+                error: function () {
                     alert("삭제할 수 없습니다. 다시 시도해주세요.");
                 }
             })
