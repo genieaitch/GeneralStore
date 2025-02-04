@@ -22,7 +22,7 @@
         <!-- JQuery로 데이터 추가 -->
         </tbody>
     </table>
-    <a href="/pizzas/add">메뉴 추가</a>
+    <a href="/pizzas/add" class="btn">메뉴 추가</a>
 </div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
@@ -38,7 +38,7 @@
                             <!-- 이미지가 보이지 않으면 삼항 연산자로 default-pizza.png 보여주기 -->
                             <td><img src="${pizza.imagePath ? pizza.imagePath : "/images/default-pizza.png"}" alt="이미지" style="width: 50px;"></td>
                             <td>
-                            <a href="/pizzas/detail?id=${pizza.id}" class="btn">상세보기</a>
+                                <a href="/pizzas/detail?id=${pizza.id}" class="btn">상세보기</a>
                                 <a href="/pizzas/edit?id=${pizza.id}" class="btn">수정</a>
                                 <button onclick="deletepizza(${pizza.id})">삭제</button>
                             </td>

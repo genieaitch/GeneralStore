@@ -38,6 +38,7 @@
             $("#pizza-description").text(data.description);
             $("#pizza-price").text(data.price);
 
+            //피자 이미지가 DB에 존재할 경우 img src 변경
             $("#edit-button").attr("href", `/pizzas/edit?id=${id}`);
         },
         error: function () {
