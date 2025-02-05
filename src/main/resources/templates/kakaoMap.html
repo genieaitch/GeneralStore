@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오 맵 - 현재 위치 표시</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<!-- javascript js → api 키 발급 -->
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="map" style="width:100%;height:350px;"></div>
+<!-- backend와 마찬가지로 frontend 또한 properties와 같이 KEY 값이나 ID 값을 설정해서 작성하는 파일 env = Environment
+
+1. env = Environment 전달 (JAVA + HTML) 형식 사용 불가 Only Frontend로만 작업할 때 설정
+2. properties 내 kakao.javascript.api.key 값을 설정해서 controller 전달
+-->
+
+<!-- controller Value 값으로 properties 내에 있는 kakaoJavaScript app key 를 model.addAttribute 로 전달받아서 html 에 appKey 전송-->
+<script th:src="@{'https://dapi.kakao.com/v2/maps/sdk.js?appkey='+ ${appkey} + '&libraries=services'}"></script>
+<!--<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=본인 API APP KEY&libraries=services"></script>-->
+<!--
+카카오 맵에서 정보를 가지고 올 때 http 로 가져올 수 있으니, https 설정
+libraries=services = 위치 기반 서비스 오류 방지
+async defer = 웹 브라우저가 지도 스크립트 문서를 완전히 가져오기 전에 아래에 있는 스크립트 실행을 방지
+→ https 일 때 사용해주는 것이 좋음
+-->
+<script>
+    // https = 안전하게 보호되고, 공식적으로 사용하는 웹사이트
+    // http = 개발 환경 안정 보장 X → 현재 위치가 이상하게 가져올 수 있음
+
+    //현재 위치에서 지도 설정
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 기본적으로 설정할 위치
+            level: 3 // 지도의 확대 레벨
+        };
+
+    // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 현재 위치 가져오기
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var lat = position.coords.latitude; //위도
+            var lon = position.coords.longitude; //경도
+
+            var position = new kakao.maps.LatLng(lat, lon); //현재 위치 좌표 kakao 회사의 map을 활용해서 설정
+
+            map.setCenter(position) // 내 위치 기준으로 이동
+
+            // 내 위치를 표기할 마커 추가
+            var marker = new kakao.maps.Marker({
+                position: position,
+            });
+            marker.setMap(map);
+
+            // 내 위치 정보를 표시하면서 현재 위치임을 나타내기 위한 말풍선(선택사항)
+            var infoWindow = new kakao.maps.InfoWindow({
+                content: '<div style=padding:10px>현재 위치</div>'
+            });
+
+            infoWindow.open(map, marker);
+        }, function (){
+            alert("현재 위치를 가져올 수 없습니다.");
+        },
+            {
+                enableHighAccuracy: true //gps 기반 위치 사용
+            })
+    }
+</script>
+
+</body>
+</html>

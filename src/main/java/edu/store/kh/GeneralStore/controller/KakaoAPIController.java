@@ -64,14 +64,16 @@ public class KakaoAPIController {
         ResponseEntity<Map> userResponse = restTemplate.postForEntity(userInfoUrl, userRequest, Map.class);
 
         Map userInfo = userResponse.getBody();
-        System.out.println("카카오톡에서 인증받아 가져온 사용자 정보 보기 : "+userInfo);
+        System.out.println("카카오톡에서 인증받아 가져온 사용자 정보 보기 : " + userInfo);
 
-        /*
-        * 필수 동의 설정
-        * 이름 성별 생일 을 가져오고 signup/kakao 페이지에서 가져온 데이터 출력
-        * label input disable
-        *
-        * */
+
+        /*******
+         * 필수 동의 설정
+         * 이름 성별 생일 을 가져오고 signup/kakao 페이지에서 가져온 데이터 출력
+         * label input disable
+         */
+
+
         // kakao json 형식을 확인하고 본인이 가져오고자 하는 경로에서 필요한 데이터 가져오기 설정
         // 1. properties 내에 존재하는 nickname profileImg 가져오기
         Map<String, Object> properties = (Map<String, Object>) userInfo.get("properties");
@@ -86,6 +88,6 @@ public class KakaoAPIController {
         String birthday = (String) kakaoAccount.get("birthday");
 
         // 3. 회원가입으로 이동할 때 카카오에서 가져온 데이터 사용하기위해 전달
-        return "redirect:/signup/kakao?nickname=" + encodedNickname + "&email=" + email + "&profileImg=" + profileImg + "&gender=" + gender + "&birthday=" + birthday;
+        return "redirect:/signup/kakao?nickname=" + encodedNickname + "&email=" + email +"&gender=" +gender +"&birthday=" +birthday + "&profileImg=" + profileImg;
     }
 }
