@@ -3,47 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>잡화점 회원가입</title>
+    <title>Title</title>
     <link rel="icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/css/pizza-style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 <div class="container">
-    <h1>회원가입</h1>
+    <h1>카카오 회원가입</h1>
+
     <label for="nickname">닉네임</label>
-    <input type="text" name="nickname" id="nickname" disabled>
+    <input type="text" id="nickname" name="nickname">
 
     <label for="email">이메일</label>
-    <input type="email" name="email" id="email" disabled>
+    <input type="email" id="email" name="email">
 
     <label for="password">비밀번호</label>
-    <input type="password" name="password" id="password">
-    
+    <input type="password" id="password" name="password">
+
     <label for="gender">성별</label>
     <input type="text" name="gender" id="gender" disabled>
 
     <label for="birthday">생일</label>
     <input type="text" name="birthday" id="birthday" disabled>
 
-    <label for="profileImage">프로필이미지</label>
-    <input type="file" name="profileImage" id="profileImage">
+    <label for="profileImage">프로필 이미지</label>
+    <input type="file" id="profileImage" name="profileImage">
 
-    <button type="button" id="signup" class="btn">가입하기</button>
+    <button id="signup" type="button" class="btn">회원가입</button>
 </div>
+</body>
 <script>
-    const param = new URLSearchParams(window.location.search);
+    const param = new URLSearchParams(location.search);
+
     const nickname = param.get('nickname');
     const email = param.get('email');
-    const profileImage = param.get('profileImage');
+    const birthday = param.get('birthday');
     const gender = param.get('gender');
-    const birthday = param.get('birthday')
+    const profileImage = param.get('profile_image');
 
-    $("#nickname").val(decodeURIComponent(nickname)); //한글 깨짐없이 가져오기
-    $("#email").val(email);
-    $("#profileImage").attr('src', param.get('profileImage'));
-    $("#gender").val(gender);
-    $("#birthday").val(birthday);
+    $('#nickname').val(decodeURIComponent(nickname));
+    $('#email').val(email);
+    $('#birthday').val((birthday));
+    $('#gender').val((gender));
+    $('#profileImage').attr('src', param.get('profileImage'));
+
 </script>
-</body>
 </html>

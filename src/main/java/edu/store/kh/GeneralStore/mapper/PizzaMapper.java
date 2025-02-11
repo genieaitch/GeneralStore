@@ -28,5 +28,4 @@ public interface PizzaMapper {
     // void  = 삭제한 피자 메뉴 개수 확인 or 제대로 삭제되었는지 확인 X
     // int   = 삭제할 피자 메뉴 다수      or 0 이하의 값으로 출력되면 제대로 삭제되지 않았음 확인 O
     public int deletePizza(int id);
-
 }

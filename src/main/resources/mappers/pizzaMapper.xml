@@ -4,14 +4,9 @@
 <mapper namespace="edu.store.kh.GeneralStore.mapper.PizzaMapper">
 
     <select id="selectAll">
-        SELECT * FROM PizzaMenu
-    </select>
-
-    <delete id="deletePizza">
-        DELETE
+        SELECT *
         FROM PizzaMenu
-        WHERE id = #{id}
-    </delete>
+    </select>
 
     <select id="selectById">
         SELECT *
@@ -20,19 +15,25 @@
     </select>
 
     <insert id="insertPizza">
-        <!-- id 값은 mysql 에서 값이 추가될 경우 자동 증가 설정-->
-        INSERT INTO PizzaMenu (name, price, description, imagePath)
-        VALUES (#{name}, #{price}, #{description}, #{imagePath})
+        <!-- id 값은 mysql 에서 값이 추가될경우 자동 증가 설정 -->
+        INSERT INTO PizzaMenu(name, price, description, image_path)
+        VALUES (#{name}, #{price}, #{description}, #{imagePath});
     </insert>
 
     <update id="updatePizza">
         UPDATE PizzaMenu
         SET
-        <!-- sql 컬럼명 = DTO 변수명 -->
-        name = #{name},
-        price = #{price},
-        description = #{description},
+        <!-- sql 컬럼명   =  DTO 변수명-->
+        name   = #{name},
+        price  = #{price},
+        description= #{description},
         image_path = #{imagePath}
-        WHERE id = #{id}
+        WHERE           id = #{id}
+
     </update>
+    <delete id="deletePizza">
+        DELETE
+        FROM PizzaMenu
+        WHERE id = #{id}
+    </delete>
 </mapper>

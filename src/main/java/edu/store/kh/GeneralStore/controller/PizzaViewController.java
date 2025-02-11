@@ -1,9 +1,7 @@
 package edu.store.kh.GeneralStore.controller;
 
-import edu.store.kh.GeneralStore.dto.Pizza;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
