@@ -12,6 +12,11 @@ import java.util.List;
 
 @RequestMapping("/api")
 @RestController
+/*
+아래 두 가지 방식은 CorsConfig 랑 충돌이 날 수 있기 때문에 사용하지 않음
+@CrossOrigin("3000")
+@CrossOrigin("http://localhost:3000")
+ */
 public class PizzaApiController {
     // ServiceImpl -> Autowired 호출
     @Autowired

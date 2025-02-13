@@ -17,7 +17,7 @@
     <insert id="insertPizza">
         <!-- id 값은 mysql 에서 값이 추가될경우 자동 증가 설정 -->
         INSERT INTO PizzaMenu(name, price, description, image_path)
-        VALUES (#{name}, #{price}, #{description}, #{imagePath});
+        VALUES (#{name}, #{price}, #{description}, #{imagePath})
     </insert>
 
     <update id="updatePizza">
