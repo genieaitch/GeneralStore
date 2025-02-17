@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.store.kh.GeneralStore.mapper.PizzaMapper">
+
+    <select id="selectAll">
+        SELECT *
+        FROM PizzaMenu
+    </select>
+
+    <select id="selectById">
+        SELECT *
+        FROM PizzaMenu
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insertPizza">
+        <!-- id 값은 mysql 에서 값이 추가될경우 자동 증가 설정 -->
+        INSERT INTO PizzaMenu(name, price, description, image_path)
+        VALUES (#{name}, #{price}, #{description}, #{imagePath})
+    </insert>
+
+    <update id="updatePizza">
+        UPDATE PizzaMenu
+        SET
+        <!-- sql 컬럼명   =  DTO 변수명-->
+        name   = #{name},
+        price  = #{price},
+        description= #{description},
+        image_path = #{imagePath}
+        WHERE           id = #{id}
+
+    </update>
+    <delete id="deletePizza">
+        DELETE
+        FROM PizzaMenu
+        WHERE id = #{id}
+    </delete>
+</mapper>

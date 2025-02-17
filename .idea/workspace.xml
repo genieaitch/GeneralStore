@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8cf43b06-6a24-495a-b3ac-e8619e9fae93" name="변경" comment="추가" />
+    <list id="72561454-e0c4-433c-9e15-31b1a627d2b8" name="커밋안함" comment="커밋안함" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="XML mybatis File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;genieaitch&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/genieaitch/GeneralStore.git&quot;,
+    &quot;accountId&quot;: &quot;7bfdefdd-cac0-4415-b2ce-11ce04683130&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2sVXFrG56dbYlnqx1iU2nhI6Aav" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Gradle.C:/Users/user1/Desktop/GeneralStore/build.gradle.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GeneralStore 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.소스 다운로드.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.GeneralStoreApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user1/Desktop/react-workspace/my-app&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDK&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user1\Desktop\GeneralStore\src\main\resources\static\images" />
+      <recent name="C:\Users\user1\Desktop\GeneralStore\src\main\resources" />
+      <recent name="C:\Users\user1\Desktop\GeneralStore\src\main\resources\templates" />
+      <recent name="C:\Users\user1\Desktop\GeneralStore\src\main\resources\static" />
+      <recent name="C:\Users\user1\Desktop\GeneralStore\src\main\java\edu\store\kh\GeneralStore\config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user1\Desktop\GeneralStore\src\main\resources\static\images" />
+      <recent name="C:\Users\user1\Desktop\GeneralStore\src\main\resources" />
+      <recent name="C:\Users\user1\Desktop\GeneralStore\src\main\resources\static" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="edu.store.kh.GeneralStore.service" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="GeneralStoreApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="GeneralStore.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.store.kh.GeneralStore.GeneralStoreApplication" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GeneralStoreApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="GeneralStore.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.store.kh.GeneralStore.GeneralStoreApplication" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="8cf43b06-6a24-495a-b3ac-e8619e9fae93" name="변경" comment="" />
+      <changelist id="72561454-e0c4-433c-9e15-31b1a627d2b8" name="커밋안함" comment="" />
+      <created>1738541614778</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1738541614778</updated>
+      <workItem from="1738541616240" duration="117000" />
+      <workItem from="1738541781336" duration="20143000" />
+      <workItem from="1738629202660" duration="19204000" />
+      <workItem from="1738713809058" duration="17170000" />
+      <workItem from="1738799838987" duration="3150000" />
+      <workItem from="1739245222476" duration="4576000" />
+      <workItem from="1739318787853" duration="2822000" />
+      <workItem from="1739407947180" duration="34000" />
+      <workItem from="1739408512797" duration="11250000" />
+      <workItem from="1739442237649" duration="6000" />
+      <workItem from="1739491237457" duration="9818000" />
+      <workItem from="1739750526605" duration="1040000" />
+      <workItem from="1739754378840" duration="605000" />
+      <workItem from="1739772528827" duration="1442000" />
+      <workItem from="1739774047062" duration="1311000" />
+      <workItem from="1739782245894" duration="37000" />
+    </task>
+    <task id="LOCAL-00001" summary="상세보기 내 삭제 기능 추가">
+      <option name="closed" value="true" />
+      <created>1738553023513</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738553023513</updated>
+    </task>
+    <task id="LOCAL-00002" summary="상세보기 내, 목록 내 수정 기능 추가">
+      <option name="closed" value="true" />
+      <created>1738554500089</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1738554500089</updated>
+    </task>
+    <task id="LOCAL-00003" summary="업데이트, 추가 기능 추가">
+      <option name="closed" value="true" />
+      <created>1738565504213</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1738565504213</updated>
+    </task>
+    <task id="LOCAL-00004" summary="pizza api insert update uuid currentRimeMills">
+      <option name="closed" value="true" />
+      <created>1738640051236</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1738640051236</updated>
+    </task>
+    <task id="LOCAL-00005" summary="pizza api login -&gt; signup">
+      <option name="closed" value="true" />
+      <created>1738651666999</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1738651666999</updated>
+    </task>
+    <task id="LOCAL-00006" summary="naver api login → signup">
+      <option name="closed" value="true" />
+      <created>1738722161134</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1738722161134</updated>
+    </task>
+    <task id="LOCAL-00007" summary="kakao Map API JavaScript">
+      <option name="closed" value="true" />
+      <created>1738727111784</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1738727111784</updated>
+    </task>
+    <task id="LOCAL-00008" summary="최종 수정">
+      <option name="closed" value="true" />
+      <created>1739257483040</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1739257483040</updated>
+    </task>
+    <task id="LOCAL-00009" summary="카페 목록 상세 조회 추가">
+      <option name="closed" value="true" />
+      <created>1739442177166</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1739442177166</updated>
+    </task>
+    <task id="LOCAL-00010" summary="로그인 session">
+      <option name="closed" value="true" />
+      <created>1739495371150</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1739495371150</updated>
+    </task>
+    <task id="LOCAL-00011" summary="추가">
+      <option name="closed" value="true" />
+      <created>1739782258502</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1739782258502</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="상세보기 내 삭제 기능 추가" />
+    <MESSAGE value="상세보기 내, 목록 내 수정 기능 추가" />
+    <MESSAGE value="업데이트, 추가 기능 추가" />
+    <MESSAGE value="pizza api insert update uuid currentRimeMills" />
+    <MESSAGE value="pizza api login -&gt; signup" />
+    <MESSAGE value="naver api login → signup" />
+    <MESSAGE value="커밋안함" />
+    <MESSAGE value="kakao Map API JavaScript" />
+    <MESSAGE value="최종 수정" />
+    <MESSAGE value="카페 목록 상세 조회 추가" />
+    <MESSAGE value="로그인 session" />
+    <MESSAGE value="추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="추가" />
+  </component>
+</project>

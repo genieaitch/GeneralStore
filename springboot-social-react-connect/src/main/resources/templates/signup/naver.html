@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>잡화점 회원가입</title>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/pizza-style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>회원가입</h1>
+    <label for="nickname">닉네임</label>
+    <input type="text" name="nickname" id="nickname" disabled>
+
+    <label for="name">이름</label>
+    <input type="text" name="name" id="name" disabled>
+
+    <label for="email">이메일</label>
+    <input type="email" name="email" id="email" disabled>
+
+    <label for="password">비밀번호</label>
+    <input type="password" name="password" id="password">
+
+    <label for="gender">성별</label>
+    <input type="text" name="gender" id="gender" disabled>
+
+    <label for="birthday">생일</label>
+    <input type="text" name="birthday" id="birthday" disabled>
+
+    <label for="profileImage">프로필이미지</label>
+    <input type="file" name="profileImage" id="profileImage">
+
+    <button type="button" id="signup" class="btn">가입하기</button>
+</div>
+<script>
+    // const = 상수 = 변수 내 최초로 작성한 값 변경 불가
+    // let = 변수 = 변수 내 작성한 값 변경 가능
+    const param = new URLSearchParams(window.location.search);
+    const nickname = param.get('nickname');
+    const name = param.get('name')
+    const email = param.get('email');
+    const profileImage = param.get('profile_image');
+    // 성별을 frontend 에서 backend로 넘어온 f → female 로 표기 설정
+    let gender = param.get('gender');
+    const birthday = param.get('birthday')
+
+    // 성별 → f/F or m/M if f/F 라면 = Female 형식으로 DB 저장
+    //                   else m/M 라면 = Male 형식으로 DB 저장
+    //                   그런데 둘 다 아니라면 ? 우선 gender 변수명으로 들어온 값을 DB 저장하고 추후 작업
+    //          gender 변수명으로 들어온 값이 여성이라면 여성에 관련된 값처리를 진행한 후 사용자들에게 업데이트 요청
+
+    if(gender){
+        // 성별로 들어온 값을 소문자처리   만약에 f라면 Female로 처리 f가 아닌데 m이라면 Male처리 f나 m 둘 다 아니라면 어떤 값으로 들어왔는지 추후처리하기 위해 gender 설정
+        gender = gender.toLowerCase() === 'f' ? 'Female' : (gender.toLowerCase() === 'm' ? 'Male' : gender);
+    }
+
+    // 만약 성별이 f 로 들어올 때 toLowerCase() = 대소문자 구분 없이 F or f 로 들어오든 f로 처리하겠다.
+    if(gender==='F'){
+        gender = gender.toLowerCase().replace('f', 'female');
+    }
+
+    if (gender==='M'){
+        gender = gender.toLowerCase().replace('m', 'male');
+    }
+
+    $("#nickname").val(decodeURIComponent(nickname)); //한글 깨짐없이 가져오기
+    $("#name").val(decodeURIComponent(name));
+    $("#email").val(email);
+    $("#profileImage").attr('src', param.get('profileImage'));
+    $("#gender").val(gender);
+    $("#birthday").val(birthday);
+
+
+</script>
+</body>
+</html>

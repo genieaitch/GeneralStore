@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>잡화점</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/css/pizza-style.css">
+    <style>
+        .container #kakaoLogin, .container #naverLogin{
+            display: block;
+            width: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="/pizzas" class="btn">피자 메뉴 보기</a>
+    <img src="/images/kakao_login_large.png" id="kakaoLogin">
+    <img src="/images/naver_login_large.png" id="naverLogin">
+</div>
+<script>
+    $("#naverLogin").click(function () {
+        $.ajax({
+            url: "/oauth/naver/login", // redirect url api 주소 형식을 맞춰줘야함
+            method: "GET",
+            success: function (data){
+                window.location.href = data;
+            },
+            error: function (){
+                alert("네이버 개발센터 > 내 어플리케이션 > API 설정 > 네이버 로그인에서 Callback URL을 확인하세요")
+            }
+        })
+    });
+
+    $("#kakaoLogin").click(function () {
+        $.ajax({
+            url: "/oauth/kakao/login", //redirect URI 에 작성한 주소 8080 포트 뒤에 작성된 주소 값 설정
+            method: "GET",
+            success: function (data) {
+                console.log("data : " + data);
+                window.location.href = data;
+            },
+            error: function () {
+                alert("카카오 개발센터 > 내 애플리케이션 > 제품 설정 > 카카오 로그인에서 Redirect URI를 확인하세요")
+            }
+        })
+    });
+
+</script>
+</body>
+</html>
