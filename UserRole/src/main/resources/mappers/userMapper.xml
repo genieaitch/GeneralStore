@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kh.edu.react.provider.mapper.UserMapper">
+
+    <!-- 유저 정보 조회 -->
+    <select id="getUserById">
+        SELECT *
+        FROM userrole
+        WHERE user_id = #{userId}
+    </select>
+
+    <!-- 유저 로그인 확인 -->
+    <select id="loginUser">
+        SELECT *
+        FROM userrole
+        WHERE user_id = #{userId}
+        AND user_password = #{userPassword}
+    </select>
+
+</mapper>
