@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kh.edu.react.provider.mapper.ProductMapper">
+    <!-- 모든 제품 조회 "/api/products" -->
+    <select id="findAllProducts">
+        SELECT *
+        FROM product
+        ORDER BY created_at DESC
+    </select>
+
+    <!-- 상품명 또는 카테고리 조회 "/api/products/search?keyword=검색어" -->
+    <select id="searchProducts">
+        SELECT *
+        FROM product
+        WHERE product_name LIKE CONCAT('%', #{keyword}, '%')
+        OR product_category LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+    <!-- 제품 상세 조회 "/api/products/{productId}" -->
+    <select id="findProductById">
+        SELECT *
+        FROM product
+        WHERE product_id = #{productId}
+    </select>
+
+    <!-- 제품 저장 "/api/products" -->
+    <insert id="saveProduct">
+        INSERT INTO product (product_name, product_category, product_price, product_stock, product_description, product_image_url)
+        VALUES (#{productName}, #{productCategory}, #{productPrice}, #{productStock}, #{productDescription}, #{productImageUrl})
+    </insert>
+
+    <!--
+    500 Internal Server Error
+    대표적으로 SQl 구문 오류
+    예) 숫자값 자리에 문자열이 들어가려하거나
+    문자열 자리에 숫자값이 들어가려 할 때 발생
+    SQL , () {} ; 특수문자 구문 오류 발생
+    SQL 에서 쿼리가 잘못되었거나
+    SQL 컬럼이름과 DTO 에 작성한 변수이름이 일치하지 않아 발생
+    SQL 컬럼이름이 Mapper.xml 과 MySQL 에 작성된 컬럼이름이 일치하지 않아 발생
+    -->
+</mapper>

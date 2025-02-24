@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -15,7 +16,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(String userId) {
-        return userMapper.getUserById(userId);
+        User user = userMapper.getUserById(userId);
+
+        System.out.println("================SERVICE================");
+        System.out.println(user);
+        return user;
     }
 
     /*
@@ -47,10 +52,18 @@ public class UserServiceImpl implements UserService {
             result.put("status", "success");
             result.put("user", loggedInUser);
             result.put("redirect", "/");
+            
+            //유저 롤에 따라 페이지 설정 기업페이지 유저페이지 관리자 페이지로 이동 설정
         }else {
             result.put("status", "fail");
             result.put("message", "아이디 또는 비밀번호가 올바르지 않습니다.");
         }
+        System.out.println("result : " + result);
         return result;
+    }
+
+    @Override
+    public List<User> findUserByName(String userName) {
+        return userMapper.findUserByName(userName);
     }
 }
