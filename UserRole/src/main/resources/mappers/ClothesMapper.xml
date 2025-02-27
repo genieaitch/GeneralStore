@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kh.edu.react.provider.mapper.ClothesMapper">
+    <select id="getAllClothes">
+        SELECT * FROM clothes_store
+    </select>
+
+    <select id="getClothesById">
+        SELECT * FROM clothes_store WHERE c_id = #{cId}
+    </select>
+
+    <insert id="insertClothes">
+        INSERT INTO clothes_store (c_name, c_category, c_brand, c_color, c_size, c_material, c_price, c_stock, c_gender, c_season)
+        VALUES (#{cName}, #{cCategory}, #{cBrand}, #{cColor}, #{cSize}, #{cMaterial}, #{cPrice}, #{cStock}, #{cGender}, #{cSeason})
+    </insert>
+
+    <update id="updateClothes">
+        UPDATE clothes_store
+        SET c_name = #{cName}, c_category = #{cCategory}, c_brand = #{cBrand},
+            c_color = #{cColor}, c_size = #{cSize}, c_material = #{cMaterial},
+            c_price = #{cPrice}, c_stock = #{cStock}, c_gender = #{cGender}, c_season = #{cSeason}
+        WHERE c_id = #{cId}
+    </update>
+
+    <delete id="deleteClothes">
+        DELETE FROM clothes_store WHERE c_id = #{cId}
+    </delete>
+</mapper>
